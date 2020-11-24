@@ -69,18 +69,18 @@ jobs:
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
-        username: isrgautomaton
-        password: ${{ secrets.ISRG_AUTOMATON_DOCKERHUB_AUTH_TOKEN }}
+        username: aaomidi
+        password: ${{ secrets.AAOMIDI_DOCKERHUB_TOKEN }}
     - name: build
       run: ./deploy-operator/build.sh
     - name: tag
-      run: docker tag letsencrypt/prio-deploy-operator letsencrypt/prio-deploy-operator:${{ steps.get_version.outputs.VERSION }}
+      run: docker tag aaomidi/prio-deploy-operator aaomidi/prio-deploy-operator:${{ steps.get_version.outputs.VERSION }}
     - name: tag-latest
-      run: docker tag letsencrypt/prio-deploy-operator letsencrypt/prio-deploy-operator:latest
+      run: docker tag aaomidi/prio-deploy-operator aaomidi/prio-deploy-operator:latest
     - name: push
-      run: docker push letsencrypt/prio-deploy-operator:${{ steps.get_version.outputs.VERSION }}
+      run: docker push aaomidi/prio-deploy-operator:${{ steps.get_version.outputs.VERSION }}
     - name: push-latest
-      run: docker push letsencrypt/prio-deploy-operator:latest
+      run: docker push aaomidi/prio-deploy-operator:latest
 
   push-manifest-updater:
     runs-on: ubuntu-latest
@@ -94,15 +94,15 @@ jobs:
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
-        username: isrgautomaton
-        password: ${{ secrets.ISRG_AUTOMATON_DOCKERHUB_AUTH_TOKEN }}
+        username: aaomidi
+        password: ${{ secrets.AAOMIDI_DOCKERHUB_TOKEN }}
     - name: build
       run: ./manifest-updater/build.sh
     - name: tag
-      run: docker tag letsencrypt/prio-manifest-updater letsencrypt/prio-manifest-updater:${{ steps.get_version.outputs.VERSION }}
+      run: docker tag aaomidi/prio-manifest-updater aaomidi/prio-manifest-updater:${{ steps.get_version.outputs.VERSION }}
     - name: tag-latest
-      run: docker tag letsencrypt/prio-manifest-updater letsencrypt/prio-manifest-updater:latest
+      run: docker tag aaomidi/prio-manifest-updater aaomidi/prio-manifest-updater:latest
     - name: push
-      run: docker push letsencrypt/prio-manifest-updater:${{ steps.get_version.outputs.VERSION }}
+      run: docker push aaomidi/prio-manifest-updater:${{ steps.get_version.outputs.VERSION }}
     - name: push-latest
-      run: docker push letsencrypt/prio-manifest-updater:latest
+      run: docker push aaomidi/prio-manifest-updater:latest
